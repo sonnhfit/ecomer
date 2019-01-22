@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+	<div class="row">
+    {% include 'left-slide.html' %}
+	<div class="span9">
+    <ul class="breadcrumb">
+    <li><a href="index.html">Home</a> <span class="divider">/</span></li>
+    <li><a href="products.html">Items</a> <span class="divider">/</span></li>
+    <li class="active">Preview</li>
+    </ul>
+	<div class="well well-small">
+	<div class="row-fluid">
+			<div class="span5">
+			<div id="myCarousel" class="carousel slide cntr">
+                <div class="carousel-inner">
+                  <div class="item active">
+                   <a href="#"> <img src="{{ product.get_image_url }}" alt="" style="width:100%"></a>
+                  </div>
+                </div>
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+            </div>
+			</div>
+			<div class="span7">
+				<h3>{{ product.title }}</h3>
+				<hr class="soft"/>
+
+
+				  <div class="control-group">
+					<label class="control-label"><span>{{ product.price }} VND</span></label>
+					<div class="controls">
+					<input type="number" class="span6" placeholder="Qty.">
+					</div>
+				  </div>
+
+                    {% for feature in product_feature %}
+				  <div class="control-group">
+					<label class="control-label"><span>{{ feature.title }}</span></label>
+					<div class="controls">
+
+					  <select class="span11">
+                          {% for ite in feature.FeaturedItem.all %}
+
+						  <option>{{ ite.feature_title }}</option>
+                          {% endfor %}
+						</select>
+					</div>
+				  </div>
+                    {% endfor %}
+
+				  <h4>Mô tả</h4>
+				  <p>{{ product.description }}
+				  <p>
+				  <button onclick="add_card('{{ csrf_token }}', {{ product.id }})"  class="shopBtn"><span class=" icon-shopping-cart"></span> Thêm vào giỏ</button>
+
+			</div>
+			</div>
+				<hr class="softn clr"/>
+
+</div>
+</div>
+</div>
+
+{% endblock %}

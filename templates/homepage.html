@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+	<div class="row">
+    {% include 'left-slide.html' %}
+	<div class="span9">
+<!--
+New Products
+-->
+	<div class="well well-small">
+	<h3>Our Products </h3>
+	<div class="row-fluid">
+        {% for product in products %}
+		  <ul class="thumbnails">
+              <li class="span4">
+			  <div class="thumbnail">
+				<a href="{{product.get_absolute_url}}" class="overlay"></a>
+				<a class="zoomTool" href="{{product.get_absolute_url}}" title="add to cart"><span class="icon-search"></span> Xem chi tiết</a>
+				<a href="{{product.get_absolute_url}}"><img src="{{product.get_image_url}}" alt=""></a>
+				<div class="caption cntr">
+					<p>Manicure & Pedicure</p>
+					<p><strong> $22.00</strong></p>
+					<h4><a class="shopBtn" href="{{product.get_absolute_url}}" title="add to cart"> Add to cart </a></h4>
+					<div class="actionList">
+						<a class="pull-left" href="#">Add to Wish List </a>
+						<a class="pull-left" href="#"> Add to Compare </a>
+					</div>
+					<br class="clr">
+				</div>
+			  </div>
+			</li>
+        {% endfor %}
+		  </ul>
+		</div>
+
+
+	</div>
+	</div>
+	</div>
+{% endblock %}

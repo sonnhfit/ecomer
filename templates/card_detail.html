@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+	<div class="span12">
+    <ul class="breadcrumb">
+		<li><a href="index.html">Home</a> <span class="divider">/</span></li>
+		<li class="active">Thanh toán</li>
+    </ul>
+	<div class="well well-small">
+		<h1>Thanh toán <small class="pull-right"> 2 Items are in the cart </small></h1>
+	<hr class="soften"/>
+
+	<table class="table table-bordered table-condensed">
+              <thead>
+                <tr>
+                  <th>Sản phẩm</th>
+                  <th>Số lượng</th>
+				  <th>Giá tiền </th>
+                  <th>option.</th>
+
+				</tr>
+              </thead>
+              <tbody>
+             {% for cart_item in object.cartitem_set.all %}
+                    <tr>
+                        <td>{{cart_item.item_name}}</td>
+                        <td><input class="update-cart" data-item-id="{{cart_item.item.id}}" type="number" name="qty" min="1" value="{{cart_item.quantity}}"></td>
+                        <td class="item-price">VNĐ {{cart_item.item_total}}</td>
+                        <td class="text-right"><a href="javascript:void(0)" data-item-id="{{cart_item.item.id}}" class="remove-item">Remove</a></td>
+                    </tr>
+            {% endfor %}
+				 <tr>
+                  <td class="alignR">Tổng tiền:	</td>
+                     <td></td><td></td>
+                  <td class="label label-primary"> {{object.cart_price}} VND</td>
+                </tr>
+				</tbody>
+            </table><br/>
+
+			<table class="table table-bordered">
+			<tbody>
+                <tr><td>Checkout</td></tr>
+                 <tr>
+				 <td>
+					<form class="form-horizontal" method="post" action="{% url 'cart_checkout' %}">
+                        {% csrf_token %}
+					  <div class="control-group">
+						<label class="span2 control-label" for="inputEmail">Họ Tên </label>
+						<div class="controls">
+						  <input name="name" type="text" placeholder="Họ tên">
+						</div>
+					  </div>
+					  <div class="control-group">
+						<label class="span2 control-label" for="inputPassword">Số điện thoại </label>
+						<div class="controls">
+						  <input name="phone_number" type="text" placeholder="điện thoại">
+						</div>
+					  </div>
+                        <div class="control-group">
+						<label class="span2 control-label" for="inputPassword">Email </label>
+						<div class="controls">
+						  <input name="email" type="text" placeholder="Email">
+						</div>
+					  </div>
+                        <div class="control-group">
+						<label class="span2 control-label" for="inputPassword">Địa chỉ  </label>
+						<div class="controls">
+						  <input name="address" type="text" placeholder="Địa chỉ">
+						</div>
+					  </div>
+					  <div class="control-group">
+						<div class="controls">
+						  <button  type="submit" class="shopBtn">Đặt Hàng</button>
+						</div>
+					  </div>
+					</form>
+				  </td>
+				  </tr>
+              </tbody>
+            </table>
+	<a href="products.html" class="shopBtn btn-large"><span class="icon-arrow-left"></span> Continue Shopping </a>
+	<a href="login.html" class="shopBtn btn-large pull-right">Next <span class="icon-arrow-right"></span></a>
+
+</div>
+</div>
+</div>
+
+{% endblock %}
