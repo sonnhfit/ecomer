@@ -82,7 +82,7 @@ class OrderView(View):
         user_id = request.id
         order = Order.objects.create(
             cart_id=request.session['cart_id'], user_id=user_id,
-            shipping_address=diachi, order_total= , is_completed=False)
+            shipping_address=diachi, order_total= 1, is_completed=False)
         return render(request, 'checkout_oke.html')
 
 
