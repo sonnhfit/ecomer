@@ -74,7 +74,7 @@ class Variation(models.Model):
 
     def get_title(self):
         """trả về tiêu đề của sản phẩm"""
-        return '{0}- {1}'.format(self.product.title, self.title)
+        return '{0}'.format(self.product.title)
 
     def add_to_cart(self):
         """trả về một chuỗi để thêm vào cart"""
@@ -128,7 +128,7 @@ class ProductFeatured(models.Model):
     image = models.ImageField(upload_to='products/featured/')
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=400, blank=True, null=True)
-    FeaturedItem = models.ManyToManyField('ProductFeaturedDetail', blank=True)
+    FeaturedItem = models.ForeignKey('ProductFeaturedDetail', blank=True, on_delete=models.CASCADE)
     active = models.BooleanField(default=True)
 
     def __unicode__(self):

@@ -133,4 +133,6 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "statics"),)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
+LANGUAGE_CODE = 'vi'
+
 LOGIN_REDIRECT_URL = '/'

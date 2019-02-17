@@ -5,6 +5,7 @@ function add_card(token, id) {
 
     $.get( "/cart/", { item: item1 , csrfmiddlewaretoken: token }, function( data, status ) {
         alert(data)
+		window.location.reload();
 
     });
 }

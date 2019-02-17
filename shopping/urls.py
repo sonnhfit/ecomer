@@ -18,14 +18,15 @@ from django.urls import path, include
 from newsletter import views as main_views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls.i18n import i18n_patterns
 
-urlpatterns = [
+urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     path('', main_views.Home.as_view(), name='home'),
     path('products/', include('products.urls')),
-    path('cart/', include('carts.urls'))
-]
-
+    path('cart/', include('carts.urls')),
+    prefix_default_language=False
+)
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

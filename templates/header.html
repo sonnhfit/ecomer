@@ -38,11 +38,11 @@
 					<a href="#"><span class="icon-youtube"></span></a>
 					<a href="#"><span class="icon-tumblr"></span></a>
 				</div>
-				<a href="index.html"> <span class="icon-home"></span> Home</a>
+				<a href="{% url 'home' %}"> <span class="icon-home"></span> Home</a>
 				<a href="#"><span class="icon-user"></span> Tài khoản</a>
-				<a href="register.html"><span class="icon-edit"></span> Đăng ký </a>
-				<a href="contact.html"><span class="icon-envelope"></span> Liên hệ</a>
-				<a href="cart.html"><span class="icon-shopping-cart"></span> {{request.session.cart_count}} Giỏ hàng </a>
+				<a href=""><span class="icon-edit"></span> Đăng ký </a>
+				<a href=""><span class="icon-envelope"></span> Liên hệ</a>
+				<a href="{% url 'cart_detail' %}"><span class="icon-shopping-cart"></span> {{request.session.cart_count}} Giỏ hàng </a>
 			</div>
 		</div>
 	</div>
@@ -72,7 +72,7 @@ Lower Header Section
 	</div>
 	<div class="span4 alignR">
 	<p><br> <strong> Hỗ trợ (24/7) :  0818000098 </strong><br><br></p>
-	<span class="btn btn-mini">[ {{request.session.cart_count}} ] <span class="icon-shopping-cart"></span></span>
+	<a href="{% url 'cart_detail' %}"> <span class="btn btn-mini">[ {{request.session.cart_count}} ] <span class="icon-shopping-cart"></span></span></a>
 	<span class="btn btn-warning btn-mini">VND</span>
 	</div>
 </div>
@@ -91,9 +91,9 @@ Navigation Bar Section
 		  </a>
 		  <div class="nav-collapse">
 			<ul class="nav">
-                <li class="active"><a href="index.html"> Trang chủ</a></li>
+                <li class="active"><a href="{% url 'home' %}"> Trang chủ</a></li>
                 {% for item in category %}
-			    <li class=""><a href="index.html"> {{ item }}</a></li>
+			    <li class=""><a href="#"> {{ item }}</a></li>
 
                 {% endfor %}
 			</ul>
